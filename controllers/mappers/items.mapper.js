@@ -26,19 +26,34 @@ const generateCategories = ({ filters }) => {
 
 const generateItems = ({ results }) => {
   return results.map(item => {
-    return {
-      id: item.id,
-      title: item.title,
-      price: {
-        currency: item.currency_id,
-        amount: item.available_quantity,
-        decimals: item.price
-      },
-      picture: item.thumbnail,
-      condition: item.condition,
-      free_shipping: item.shipping.free_shipping
-    };
+    return generateItem(item);
   });
 };
 
-module.exports = itemsMapper;
+const generateItem = (item, genereteAuthor) => {
+  let data = {
+    id: item.id,
+    title: item.title,
+    price: {
+      currency: item.currency_id,
+      amount: item.available_quantity,
+      decimals: item.price
+    },
+    picture: item.thumbnail,
+    condition: item.condition,
+    free_shipping: item.shipping.free_shipping
+  };
+  if (genereteAuthor) {
+    return {
+      author: {
+        name: 'Patricia',
+        lastname: 'Almeida'
+      },
+      item: { ...data }
+    };
+  }
+
+  return data;
+};
+
+module.exports = { itemsMapper, generateItem };

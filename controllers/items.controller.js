@@ -1,5 +1,5 @@
 // import { itemsMapper } from './mappers/items.mapper.js';
-const itemsMapper = require('./mappers/items.mapper');
+const { itemsMapper, generateItem } = require('./mappers/items.mapper');
 const axios = require('axios');
 
 exports.items_all = async (req, res) => {
@@ -18,7 +18,13 @@ exports.items_all = async (req, res) => {
 
 exports.item_details = async (req, res) => {
   try {
-  } catch (error) {}
-
-  res.send(item);
+    const response = await axios.get(
+      `https://api.mercadolibre.com/items/${req.params.id}`
+    );
+    const item = generateItem(response.data, true);
+    res.send(item);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
 };
