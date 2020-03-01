@@ -5,7 +5,7 @@ const axios = require('axios');
 exports.items_all = async (req, res) => {
   try {
     const response = await axios.get(
-      `https://api.mercadolibre.com/sites/MLA/search?q=${req.query.q}`
+      `https://api.mercadolibre.com/sites/MLA/search?q=${req.query.q}&limit=4`
     );
     const items = itemsMapper(response.data);
     // res.send(response.data);
