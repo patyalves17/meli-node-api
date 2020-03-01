@@ -39,9 +39,10 @@ const generateItem = (item, genereteAuthor) => {
       amount: item.available_quantity,
       decimals: item.price
     },
-    picture: item.thumbnail,
+    picture: item.pictures ? item.pictures[0].url : item.thumbnail,
     condition: item.condition,
-    free_shipping: item.shipping.free_shipping
+    free_shipping: item.shipping.free_shipping,
+    sold_quantity: item.sold_quantity
   };
   if (genereteAuthor) {
     return {

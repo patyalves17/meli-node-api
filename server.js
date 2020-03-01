@@ -1,11 +1,10 @@
 const express = require('express');
 const items = require('./routes/items.route');
+const cors = require('cors');
 
 const app = express();
 
-// app.get('/', (req, resp) => {
-//   resp.send('retornou lol');
-// });
+app.use(cors());
 
 app.use('/items', items);
 
