@@ -30,7 +30,7 @@ const generateItems = ({ results }) => {
   });
 };
 
-const generateItem = (item, genereteAuthor) => {
+const generateItem = (item, description, genereteAuthor) => {
   let data = {
     id: item.id,
     title: item.title,
@@ -44,6 +44,15 @@ const generateItem = (item, genereteAuthor) => {
     free_shipping: item.shipping.free_shipping,
     sold_quantity: item.sold_quantity
   };
+
+  if (description) {
+    let descriptions = '';
+    description.map(desc => {
+      descriptions += desc.plain_text;
+    });
+
+    data.description = descriptions;
+  }
   if (genereteAuthor) {
     return {
       author: {
