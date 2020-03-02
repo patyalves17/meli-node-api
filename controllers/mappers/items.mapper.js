@@ -45,6 +45,20 @@ const generateItem = (item, description, genereteAuthor) => {
     sold_quantity: item.sold_quantity
   };
 
+  if (item.address) {
+    data.address = {
+      state_name: item.address.state_name,
+      city_name: item.address.city_name
+    };
+  }
+  if (item.seller_address) {
+    console.log(item.seller_address);
+    data.address = {
+      state_name: item.seller_address.state.name,
+      city_name: item.seller_address.city.name
+    };
+  }
+
   if (description) {
     let descriptions = '';
     description.map(desc => {
