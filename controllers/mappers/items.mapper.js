@@ -52,7 +52,6 @@ const generateItem = (item, description, genereteAuthor) => {
     };
   }
   if (item.seller_address) {
-    console.log(item.seller_address);
     data.address = {
       state_name: item.seller_address.state.name,
       city_name: item.seller_address.city.name
